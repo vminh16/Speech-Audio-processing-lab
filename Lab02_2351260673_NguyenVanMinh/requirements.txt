@@ -1,0 +1,17 @@
+# CSE457 - Lab 2: Speech Features and Isolated Word Recognition using DTW
+# Requirements file
+
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+librosa>=0.10.0
+soundfile>=0.12.0
+scikit-learn>=1.2.0
+
+# Testing & Dev
+pytest>=7.0.0
+
+# Jupyter Notebook environment
+ipykernel
+jupyter
+notebook

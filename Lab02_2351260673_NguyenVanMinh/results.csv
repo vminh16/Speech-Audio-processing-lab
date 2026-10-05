@@ -1,0 +1,11 @@
+filename,true_label,pred_label,is_correct,top1_score,top2_score,top3_score
+do_4.wav,do,do,True,20.2445,30.0588,30.2195
+do_5.wav,do,do,True,22.7703,26.9292,27.4735
+vang_4.wav,vang,vang,True,19.9146,22.9852,23.3890
+vang_5.wav,vang,xanh,False,18.1631,19.9116,20.8377
+xanh_4.wav,xanh,xanh,True,19.3005,21.1719,23.0750
+xanh_5.wav,xanh,xanh,True,18.5007,20.3562,23.3061
+trang_4.wav,trang,trang,True,19.0133,22.4756,24.2974
+trang_5.wav,trang,trang,True,21.8861,24.2407,25.3994
+den_4.wav,den,den,True,24.5598,27.2106,27.9269
+den_5.wav,den,den,True,21.1074,25.2845,25.6210
