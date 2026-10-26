@@ -1,0 +1,7 @@
+# Từ điển phát âm mini: WORD PHONE_1 ... PHONE_K
+# Âm vị viết theo quy ước ASCII đơn giản (không dấu thanh).
+mo    m o
+dong  d o ng
+len   l e n
+xuong x uo ng
+dung  z u ng

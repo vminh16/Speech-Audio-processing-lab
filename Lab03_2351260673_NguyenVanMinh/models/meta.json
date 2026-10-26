@@ -1,0 +1,120 @@
+{
+  "feature_config": {
+    "sr": 16000,
+    "top_db": 30.0,
+    "preemph": 0.97,
+    "n_fft": 512,
+    "win_length": 400,
+    "hop_length": 160,
+    "n_mels": 26,
+    "fmin": 20.0,
+    "fmax": 8000.0,
+    "n_mfcc": 13,
+    "use_delta": true,
+    "delta_width": 9,
+    "cmvn": true
+  },
+  "hmm_config": {
+    "n_states": 5,
+    "cov_type": "diag",
+    "n_iter": 80,
+    "tol": 0.001,
+    "min_covar": 0.001,
+    "self_loop": 0.7,
+    "init": "uniform",
+    "random_state": 0
+  },
+  "train_per_class": {
+    "mo": 6,
+    "dong": 6,
+    "len": 6,
+    "xuong": 6,
+    "dung": 6
+  },
+  "feature_time_s": 0.05152959100087173,
+  "train_time_s": 0.36247974000070826,
+  "train_info": {
+    "mo": {
+      "label": "mo",
+      "n_seqs": 6,
+      "n_frames": 1465,
+      "converged": true,
+      "n_iter_run": 45,
+      "train_ll_per_frame": -52.01176333303594,
+      "train_time_s": 0.15014901700124028
+    },
+    "dong": {
+      "label": "dong",
+      "n_seqs": 6,
+      "n_frames": 1263,
+      "converged": true,
+      "n_iter_run": 43,
+      "train_ll_per_frame": -51.30649927337681,
+      "train_time_s": 0.10512212599860504
+    },
+    "len": {
+      "label": "len",
+      "n_seqs": 6,
+      "n_frames": 780,
+      "converged": true,
+      "n_iter_run": 20,
+      "train_ll_per_frame": -49.16313358698182,
+      "train_time_s": 0.03755820300102641
+    },
+    "xuong": {
+      "label": "xuong",
+      "n_seqs": 6,
+      "n_frames": 808,
+      "converged": true,
+      "n_iter_run": 18,
+      "train_ll_per_frame": -49.961909450523585,
+      "train_time_s": 0.033777253000152996
+    },
+    "dung": {
+      "label": "dung",
+      "n_seqs": 6,
+      "n_frames": 1084,
+      "converged": true,
+      "n_iter_run": 16,
+      "train_ll_per_frame": -50.70245325457255,
+      "train_time_s": 0.03587314099968353
+    }
+  },
+  "topology": {
+    "mo": {
+      "converged": true,
+      "no_backward": true,
+      "no_skip": true,
+      "rows_sum_to_1": true,
+      "starts_in_state_0": true
+    },
+    "dong": {
+      "converged": true,
+      "no_backward": true,
+      "no_skip": true,
+      "rows_sum_to_1": true,
+      "starts_in_state_0": true
+    },
+    "len": {
+      "converged": true,
+      "no_backward": true,
+      "no_skip": true,
+      "rows_sum_to_1": true,
+      "starts_in_state_0": true
+    },
+    "xuong": {
+      "converged": true,
+      "no_backward": true,
+      "no_skip": true,
+      "rows_sum_to_1": true,
+      "starts_in_state_0": true
+    },
+    "dung": {
+      "converged": true,
+      "no_backward": true,
+      "no_skip": true,
+      "rows_sum_to_1": true,
+      "starts_in_state_0": true
+    }
+  }
+}

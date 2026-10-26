@@ -1,0 +1,15 @@
+{
+  "accuracy": 1.0,
+  "n_test": 5,
+  "per_class_accuracy": {
+    "mo": 1.0,
+    "dong": 1.0,
+    "len": 1.0,
+    "xuong": 1.0,
+    "dung": 1.0
+  },
+  "most_confused": [],
+  "train_per_class": 6,
+  "train_time_ms": 0.008818999049253762,
+  "infer_ms_per_trial": 49.10200119993533
+}

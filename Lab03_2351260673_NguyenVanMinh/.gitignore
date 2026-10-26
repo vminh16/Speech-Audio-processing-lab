@@ -1,0 +1,49 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+
+# Pytest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# IDEs & Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Documentation / local superpowers config
+docs/superpowers/
+
+# Ensure .gitkeep files are preserved to track empty folders
+!.gitkeep
+
+# Sinh ra bởi pipeline (tái tạo bằng ./run_lab03.sh): mô hình pickle và log chạy
+models/*.pkl
+results/logs/

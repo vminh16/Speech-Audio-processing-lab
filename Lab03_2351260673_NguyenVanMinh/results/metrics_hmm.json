@@ -1,0 +1,22 @@
+{
+  "accuracy": 1.0,
+  "n_test": 5,
+  "n_states": 5,
+  "per_class_accuracy": {
+    "mo": 1.0,
+    "dong": 1.0,
+    "len": 1.0,
+    "xuong": 1.0,
+    "dung": 1.0
+  },
+  "most_confused": [],
+  "mean_margin": 556.6541590177033,
+  "min_margin": 450.49417391679344,
+  "train_per_class": 6,
+  "train_time_ms": 362.47974000070826,
+  "infer_ms_per_trial": 1.125675000002957,
+  "reject_threshold": -53.93760440260896,
+  "loo_tpr": 0.9333333333333333,
+  "loo_fpr": 0.03333333333333333,
+  "test_accept_rate": 1.0
+}

@@ -1,0 +1,20 @@
+# CSE457 - Lab 3: Advanced Speech Recognition with Gaussian HMM
+# Python >= 3.9
+
+# Core
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+librosa>=0.10.0
+soundfile>=0.12.0
+scikit-learn>=1.2.0
+hmmlearn>=0.3.0
+
+# Notebook (visualization / step-by-step runs)
+ipykernel
+jupyter
+nbconvert
+
+# Tests
+pytest>=7.0.0

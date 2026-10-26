@@ -1,0 +1,25 @@
+# Tập câu lệnh mẫu (mỗi dòng một câu) để thống kê unigram/bigram.
+# Quy ước: "mo"/"dong" mở/đóng cửa; "len"/"xuong" điều khiển chiều chuyển động; "dung" dừng lại.
+mo len
+mo len dung
+mo xuong
+mo xuong dung
+mo dung
+dong xuong
+dong xuong dung
+dong len
+dong len dung
+dong dung
+len dung
+len dung mo
+xuong dung
+xuong dung dong
+len dung dong
+xuong dung mo
+mo len dung dong
+dong xuong dung mo
+mo
+dong
+len
+xuong
+dung
