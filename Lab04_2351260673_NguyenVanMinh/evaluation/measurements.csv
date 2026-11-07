@@ -1,0 +1,10 @@
+sentence_id,method,latency_ms,duration_s,rtf
+1,concat,41.17,15.388,0.0027
+1,parametric_demo,43.55,2.76,0.0158
+1,mel_demo,618.97,4.832,0.1281
+2,concat,54.28,17.404,0.0031
+2,parametric_demo,49.09,3.07,0.016
+2,mel_demo,754.59,5.376,0.1404
+3,concat,40.78,15.551,0.0026
+3,parametric_demo,40.83,2.72,0.015
+3,mel_demo,650.7,4.768,0.1365
