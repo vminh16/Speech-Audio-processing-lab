@@ -24,13 +24,13 @@ def prepare_evaluation(output_dir="evaluation", units_dir="data/units"):
     out.mkdir(parents=True, exist_ok=True)
     results = []
     for i, sentence in enumerate(DEFAULT_BENCHMARK_SENTENCES, 1):
-        for method in ("concat", "parametric_demo", "mel_demo"):
+        for method in ("concat", "hmm", "neural"):
             start = time.perf_counter()
             if method == "concat":
                 candidates = compare_candidate_strategies(normalize_queue_text(sentence), units_dir=units_dir)
                 y, _ = crossfade_sequence([u["audio"] for u in candidates["optimal_viterbi"]["units"]], sr=16000, xfade_ms=15)
                 sr = 16000
-            elif method == "parametric_demo":
+            elif method == "hmm":
                 y, sr, _ = synthesize_hmm(sentence)
             else:
                 y, sr, _ = synthesize_mel_demo(sentence)
@@ -39,9 +39,30 @@ def prepare_evaluation(output_dir="evaluation", units_dir="data/units"):
             sf.write(out / f"{method}_{i}.wav", y, sr, subtype="PCM_16")
             results.append({"sentence_id": i, "method": method, "latency_ms": round(elapsed, 2), "duration_s": round(len(y)/sr, 3), "rtf": round(elapsed / 1000 / (len(y)/sr), 4)})
     pd.DataFrame(results).to_csv(out / "measurements.csv", index=False)
+    models = Path(__file__).resolve().parents[1] / 'data/models'
+    storage = {'concat':sum(p.stat().st_size for p in Path(units_dir).glob('*.wav')),
+               'hmm':(models/'hmm.json').stat().st_size,
+               'neural':sum(p.stat().st_size for p in (models/'piper').glob('*'))}
+    summary = pd.DataFrame(results).groupby('method')[['latency_ms','rtf','duration_s']].mean()
+    summary['storage_mb'] = [storage[m]/1024**2 for m in summary.index]
+    summary['mos'] = np.nan
+    summary['intelligibility_pct'] = np.nan
+    summary['continuity'] = np.nan
+    summary.to_csv(out/'summary.csv')
     with (out / "ratings_template.csv").open("w", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow(["listener_id", "sentence_id", "method", "naturalness_score", "intelligibility_correct", "intelligibility_total", "continuity_score"])
     plot_methods_comparison(results, str(out / "latency_comparison.png"))
+    import random, shutil
+    rng = random.Random(42)
+    mapping = []
+    for sentence_id in range(1,4):
+        methods = ['concat','hmm','neural']
+        rng.shuffle(methods)
+        for j, method in enumerate(methods):
+            sample = f"S{sentence_id}_{chr(65+j)}"
+            shutil.copyfile(out / f"{method}_{sentence_id}.wav", out / f"{sample}.wav")
+            mapping.append(dict(sample_id=sample,sentence_id=sentence_id,method=method))
+    pd.DataFrame(mapping).to_csv(out / 'organizer_key.csv',index=False)
     return results
 
 
@@ -55,7 +76,7 @@ def summarize_ratings(path):
         raise ValueError("Missing or invalid rating")
     if ((df.intelligibility_total <= 0) | (df.intelligibility_correct < 0) | (df.intelligibility_correct > df.intelligibility_total)).any():
         raise ValueError("Invalid word counts")
-    grouped = df.groupby("method")
+    grouped = df.groupby("method")[["naturalness_score", "continuity_score", "intelligibility_correct", "intelligibility_total"]]
     return grouped.apply(lambda g: pd.Series({"mos": g.naturalness_score.mean(), "continuity": g.continuity_score.mean(), "intelligibility_pct": 100 * g.intelligibility_correct.sum() / g.intelligibility_total.sum(), "responses": len(g)}))
 
 
@@ -66,7 +87,7 @@ def plot_methods_comparison(results, output_fig="evaluation/latency_comparison.p
     means.plot.bar(ax=ax, color=["#2a9d8f", "#e9c46a", "#e76f51"])
     ax.set_ylabel("Mean latency (ms), 3 sentences")
     ax.set_xlabel("")
-    ax.set_title("Concatenation and two simulated backends")
+    ax.set_title("Three synthesis backends")
     fig.tight_layout()
     fig.savefig(output_fig, dpi=160)
     plt.close(fig)

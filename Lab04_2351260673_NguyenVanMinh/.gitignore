@@ -16,3 +16,6 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Download once using scripts/download_model.py
+data/models/piper/*.onnx

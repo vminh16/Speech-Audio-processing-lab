@@ -21,98 +21,6 @@ from scipy.sparse.linalg import spsolve
 
 from src.text_norm import normalize_queue_text
 
-# Bảng tham số thống kê ngữ âm miền hàng đợi (Phonetic Acoustic Models for Queue Words)
-# Mỗi từ gồm 3 trạng thái HMM: [0: Khởi âm (Onset), 1: Hạt nhân nguyên âm (Nucleus), 2: Âm kết (Coda)]
-# Tham số [F0_base_ratio, F1, F2, F3, duration_ms, is_voiced]
-HMM_STATE_MODELS: Dict[str, List[Dict[str, Any]]] = {
-    "mời": [
-        {"f0": 135.0, "f1": 320.0, "f2": 950.0, "f3": 2400.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-        {"f0": 125.0, "f1": 480.0, "f2": 1100.0, "f3": 2500.0, "dur_ms": 130, "voiced": True, "gain": 0.9},
-        {"f0": 115.0, "f1": 350.0, "f2": 2100.0, "f3": 2800.0, "dur_ms": 80, "voiced": True, "gain": 0.4},
-    ],
-    "khách": [
-        {"f0": 0.0, "f1": 450.0, "f2": 1500.0, "f3": 2600.0, "dur_ms": 80, "voiced": False, "gain": 0.4},
-        {"f0": 165.0, "f1": 750.0, "f2": 1450.0, "f3": 2550.0, "dur_ms": 140, "voiced": True, "gain": 0.9},
-        {"f0": 0.0, "f1": 500.0, "f2": 1800.0, "f3": 2700.0, "dur_ms": 70, "voiced": False, "gain": 0.3},
-    ],
-    "hàng": [
-        {"f0": 0.0, "f1": 400.0, "f2": 1300.0, "f3": 2400.0, "dur_ms": 70, "voiced": False, "gain": 0.4},
-        {"f0": 135.0, "f1": 780.0, "f2": 1320.0, "f3": 2450.0, "dur_ms": 150, "voiced": True, "gain": 0.95},
-        {"f0": 120.0, "f1": 400.0, "f2": 1150.0, "f3": 2350.0, "dur_ms": 90, "voiced": True, "gain": 0.5},
-    ],
-    "số": [
-        {"f0": 0.0, "f1": 380.0, "f2": 1600.0, "f3": 2700.0, "dur_ms": 90, "voiced": False, "gain": 0.4},
-        {"f0": 160.0, "f1": 520.0, "f2": 980.0, "f3": 2350.0, "dur_ms": 130, "voiced": True, "gain": 0.9},
-        {"f0": 178.0, "f1": 480.0, "f2": 920.0, "f3": 2300.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-    ],
-    "đến": [
-        {"f0": 145.0, "f1": 350.0, "f2": 1650.0, "f3": 2600.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-        {"f0": 168.0, "f1": 550.0, "f2": 1950.0, "f3": 2700.0, "dur_ms": 130, "voiced": True, "gain": 0.95},
-        {"f0": 175.0, "f1": 400.0, "f2": 1600.0, "f3": 2500.0, "dur_ms": 80, "voiced": True, "gain": 0.5},
-    ],
-    "quầy": [
-        {"f0": 0.0, "f1": 360.0, "f2": 1100.0, "f3": 2400.0, "dur_ms": 70, "voiced": False, "gain": 0.3},
-        {"f0": 135.0, "f1": 580.0, "f2": 1200.0, "f3": 2450.0, "dur_ms": 130, "voiced": True, "gain": 0.9},
-        {"f0": 120.0, "f1": 380.0, "f2": 2100.0, "f3": 2800.0, "dur_ms": 70, "voiced": True, "gain": 0.4},
-    ],
-    "không": [
-        {"f0": 0.0, "f1": 400.0, "f2": 1400.0, "f3": 2500.0, "dur_ms": 70, "voiced": False, "gain": 0.3},
-        {"f0": 150.0, "f1": 500.0, "f2": 950.0, "f3": 2300.0, "dur_ms": 140, "voiced": True, "gain": 0.9},
-        {"f0": 148.0, "f1": 420.0, "f2": 1100.0, "f3": 2350.0, "dur_ms": 80, "voiced": True, "gain": 0.5},
-    ],
-    "một": [
-        {"f0": 135.0, "f1": 340.0, "f2": 1050.0, "f3": 2400.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-        {"f0": 125.0, "f1": 520.0, "f2": 980.0, "f3": 2350.0, "dur_ms": 110, "voiced": True, "gain": 0.9},
-        {"f0": 105.0, "f1": 400.0, "f2": 1600.0, "f3": 2500.0, "dur_ms": 60, "voiced": False, "gain": 0.2},
-    ],
-    "hai": [
-        {"f0": 0.0, "f1": 420.0, "f2": 1400.0, "f3": 2500.0, "dur_ms": 60, "voiced": False, "gain": 0.3},
-        {"f0": 152.0, "f1": 760.0, "f2": 1350.0, "f3": 2500.0, "dur_ms": 130, "voiced": True, "gain": 0.95},
-        {"f0": 150.0, "f1": 350.0, "f2": 2150.0, "f3": 2850.0, "dur_ms": 80, "voiced": True, "gain": 0.5},
-    ],
-    "ba": [
-        {"f0": 148.0, "f1": 320.0, "f2": 1000.0, "f3": 2350.0, "dur_ms": 60, "voiced": True, "gain": 0.7},
-        {"f0": 152.0, "f1": 770.0, "f2": 1320.0, "f3": 2480.0, "dur_ms": 140, "voiced": True, "gain": 0.95},
-        {"f0": 150.0, "f1": 720.0, "f2": 1300.0, "f3": 2450.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-    ],
-    "bốn": [
-        {"f0": 150.0, "f1": 340.0, "f2": 1050.0, "f3": 2400.0, "dur_ms": 60, "voiced": True, "gain": 0.7},
-        {"f0": 168.0, "f1": 520.0, "f2": 1000.0, "f3": 2350.0, "dur_ms": 120, "voiced": True, "gain": 0.95},
-        {"f0": 178.0, "f1": 420.0, "f2": 1600.0, "f3": 2500.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-    ],
-    "năm": [
-        {"f0": 145.0, "f1": 340.0, "f2": 1550.0, "f3": 2550.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-        {"f0": 152.0, "f1": 740.0, "f2": 1360.0, "f3": 2500.0, "dur_ms": 130, "voiced": True, "gain": 0.95},
-        {"f0": 150.0, "f1": 380.0, "f2": 1100.0, "f3": 2400.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-    ],
-    "sáu": [
-        {"f0": 0.0, "f1": 380.0, "f2": 1600.0, "f3": 2700.0, "dur_ms": 80, "voiced": False, "gain": 0.4},
-        {"f0": 165.0, "f1": 720.0, "f2": 1350.0, "f3": 2480.0, "dur_ms": 120, "voiced": True, "gain": 0.95},
-        {"f0": 180.0, "f1": 450.0, "f2": 900.0, "f3": 2300.0, "dur_ms": 60, "voiced": True, "gain": 0.5},
-    ],
-    "bảy": [
-        {"f0": 135.0, "f1": 320.0, "f2": 1000.0, "f3": 2350.0, "dur_ms": 60, "voiced": True, "gain": 0.6},
-        {"f0": 120.0, "f1": 680.0, "f2": 1400.0, "f3": 2550.0, "dur_ms": 130, "voiced": True, "gain": 0.9},
-        {"f0": 142.0, "f1": 360.0, "f2": 2100.0, "f3": 2800.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-    ],
-    "tám": [
-        {"f0": 0.0, "f1": 380.0, "f2": 1600.0, "f3": 2600.0, "dur_ms": 60, "voiced": False, "gain": 0.3},
-        {"f0": 165.0, "f1": 760.0, "f2": 1350.0, "f3": 2500.0, "dur_ms": 130, "voiced": True, "gain": 0.95},
-        {"f0": 178.0, "f1": 380.0, "f2": 1050.0, "f3": 2350.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-    ],
-    "chín": [
-        {"f0": 0.0, "f1": 360.0, "f2": 1900.0, "f3": 2800.0, "dur_ms": 70, "voiced": False, "gain": 0.3},
-        {"f0": 168.0, "f1": 320.0, "f2": 2250.0, "f3": 2950.0, "dur_ms": 130, "voiced": True, "gain": 0.95},
-        {"f0": 182.0, "f1": 380.0, "f2": 1600.0, "f3": 2500.0, "dur_ms": 70, "voiced": True, "gain": 0.5},
-    ],
-    "_pause": [
-        {"f0": 0.0, "f1": 300.0, "f2": 1000.0, "f3": 2200.0, "dur_ms": 50, "voiced": False, "gain": 0.0},
-        {"f0": 0.0, "f1": 300.0, "f2": 1000.0, "f3": 2200.0, "dur_ms": 50, "voiced": False, "gain": 0.0},
-        {"f0": 0.0, "f1": 300.0, "f2": 1000.0, "f3": 2200.0, "dur_ms": 50, "voiced": False, "gain": 0.0},
-    ],
-}
-
-
 def apply_mlpg_smoothing(step_means: np.ndarray, delta_weight: float = 0.6) -> np.ndarray:
     """
     Giải thuật MLPG (Maximum Likelihood Parameter Generation) làm mượt quỹ đạo tham số HMM.
@@ -140,93 +48,42 @@ def apply_mlpg_smoothing(step_means: np.ndarray, delta_weight: float = 0.6) -> n
     return np.asarray(smoothed, dtype=np.float64)
 
 
-def generate_hmm_trajectories(
-    text: str,
-    sr: int = 16000,
-    frame_shift_ms: float = 10.0,
-    speed: float = 1.0,
-    pitch_scale: float = 1.0,
-) -> Dict[str, Any]:
-    """
-    Sinh chuỗi trạng thái và quỹ đạo tham số âm học liên tục qua MLPG.
-    """
+def generate_hmm_trajectories(text, sr=16000, frame_shift_ms=10., speed=1., pitch_scale=1.):
+    import json
+    from pathlib import Path
+    from src.concatenative import get_unit_filename
+    from scipy.sparse import eye, vstack
+    if speed <= 0 or pitch_scale <= 0 or frame_shift_ms != 10:
+        raise ValueError('Positive controls and 10 ms frame shift required')
+    model = json.loads((Path(__file__).resolve().parents[1] / 'data/models/hmm.json').read_text())['models']
     tokens = normalize_queue_text(text)
     if not tokens:
-        tokens = ["mời"]
-
-    # Xây dựng chuỗi trạng thái HMM
-    raw_f0: List[float] = []
-    raw_f1: List[float] = []
-    raw_f2: List[float] = []
-    raw_f3: List[float] = []
-    raw_gain: List[float] = []
-    state_labels: List[str] = []
-    word_boundaries: List[int] = [0]
-
-    for tok_idx, tok in enumerate(tokens):
-        states = HMM_STATE_MODELS.get(tok, HMM_STATE_MODELS["mời"])
-        for s_idx, state in enumerate(states):
-            dur = max(2, int(round((state["dur_ms"] / speed) / frame_shift_ms)))
-            target_f0 = state["f0"] * pitch_scale if state["voiced"] else 0.0
-            raw_f0.extend([target_f0] * dur)
-            raw_f1.extend([state["f1"]] * dur)
-            raw_f2.extend([state["f2"]] * dur)
-            raw_f3.extend([state["f3"]] * dur)
-            raw_gain.extend([state["gain"]] * dur)
-            state_labels.extend([f"{tok}_s{s_idx}"] * dur)
-
-        # Chèn khoảng nghỉ ngắn 30ms giữa các từ
-        pause_dur = max(1, int(round((30.0 / speed) / frame_shift_ms)))
-        raw_f0.extend([0.0] * pause_dur)
-        raw_f1.extend([300.0] * pause_dur)
-        raw_f2.extend([1000.0] * pause_dur)
-        raw_f3.extend([2200.0] * pause_dur)
-        raw_gain.extend([0.0] * pause_dur)
-        state_labels.extend(["pause"] * pause_dur)
-        word_boundaries.append(len(raw_f0))
-
-    f0_arr = np.array(raw_f0, dtype=np.float64)
-    f1_arr = np.array(raw_f1, dtype=np.float64)
-    f2_arr = np.array(raw_f2, dtype=np.float64)
-    f3_arr = np.array(raw_f3, dtype=np.float64)
-    gain_arr = np.array(raw_gain, dtype=np.float64)
-
-    # Tách các đoạn voiced để làm mượt F0 (unvoiced F0 = 0 giữ nguyên)
-    voiced_mask = f0_arr > 0
-    smooth_f0 = f0_arr.copy()
-    if np.any(voiced_mask):
-        # Làm mượt MLPG trên từng đoạn voiced liên tục
-        diffs = np.diff(np.concatenate(([0], voiced_mask.astype(int), [0])))
-        starts = np.where(diffs == 1)[0]
-        ends = np.where(diffs == -1)[0]
-        for s, e in zip(starts, ends):
-            if e - s >= 3:
-                smooth_f0[s:e] = apply_mlpg_smoothing(f0_arr[s:e], delta_weight=0.7)
-
-    smooth_f1 = apply_mlpg_smoothing(f1_arr, delta_weight=0.8)
-    smooth_f2 = apply_mlpg_smoothing(f2_arr, delta_weight=0.8)
-    smooth_f3 = apply_mlpg_smoothing(f3_arr, delta_weight=0.8)
-    smooth_gain = apply_mlpg_smoothing(gain_arr, delta_weight=0.5)
-    smooth_gain = np.clip(smooth_gain, 0.0, 1.0)
-
-    time_axis = np.arange(len(smooth_f0)) * (frame_shift_ms / 1000.0)
-
-    return {
-        "text": text,
-        "tokens": tokens,
-        "time": time_axis,
-        "f0_step": f0_arr,
-        "f0": smooth_f0,
-        "f1_step": f1_arr,
-        "f1": smooth_f1,
-        "f2_step": f2_arr,
-        "f2": smooth_f2,
-        "f3": smooth_f3,
-        "energy": smooth_gain,
-        "states": state_labels,
-        "word_boundaries": word_boundaries,
-        "frame_shift_ms": frame_shift_ms,
-    }
+        raise ValueError('Empty text')
+    means, variances, labels, boundaries = [], [], [], [0]
+    for token in tokens:
+        word = get_unit_filename(token).rsplit('_',1)[0]
+        item = model[word]
+        for state in range(3):
+            n = max(2, round(item['duration_frames'][state]/speed))
+            means.extend([item['means'][state]]*n)
+            variances.extend([item['variance'][state]]*n)
+            labels.extend([f'{token}_s{state}']*n)
+        boundaries.append(len(labels))
+    mu, var = np.array(means), np.maximum(np.array(variances),1e-6)
+    n = len(mu)
+    D = diags([-np.ones(n-1),np.ones(n-1)], [0,1], shape=(n-1,n), format='csc')
+    W = vstack([eye(n),D],format='csc')
+    smooth=[]
+    for k in range(5):
+        precision=diags(1/np.r_[var[:,k],var[:-1,k+5]])
+        target=np.r_[mu[:,k],mu[:-1,k+5]]
+        smooth.append(spsolve(W.T@precision@W, W.T@precision@target))
+    f0,f1,f2,f3,gain=smooth
+    f0=np.clip(f0,65,400)*pitch_scale
+    gain=np.clip(gain,0,1)
+    return dict(text=text,tokens=tokens,time=np.arange(n)*.01,f0_step=mu[:,0]*pitch_scale,f0=f0,
+                f1_step=mu[:,1],f1=np.clip(f1,200,1500),f2_step=mu[:,2],f2=np.clip(f2,500,3500),
+                f3=np.clip(f3,1500,4500),energy=gain,states=labels,word_boundaries=boundaries,frame_shift_ms=10.)
 
 
 def parametric_vocoder(
@@ -257,7 +114,7 @@ def parametric_vocoder(
 
         if cur_gain < 0.02 or cur_f0 <= 40.0:
             # Unvoiced hoặc khoảng lặng: Nhiễu trắng Gauss
-            noise = np.random.normal(0, 0.05, hop_samples).astype(np.float32) * cur_gain
+            noise = np.random.default_rng(frame_idx).normal(0, 0.05, hop_samples).astype(np.float32) * cur_gain
             excitation[idx_start:idx_end] = noise
         else:
             # Voiced: Dãy xung Glottal Pulse tuần hoàn

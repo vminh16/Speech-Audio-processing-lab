@@ -90,8 +90,8 @@ def run_phase6(
         table_rows.append([
             f"Câu {b['id']}",
             f"{b['duration_sec']:.2f}s",
-            f"{b['acoustic_ms']:.1f} ms",
-            f"{b['vocoder_ms']:.1f} ms",
+            "Integrated VITS",
+            "Integrated VITS",
             f"{b['latency_ms']:.1f} ms",
             f"{b['rtf']:.4f}x",
         ])

@@ -63,7 +63,7 @@ def main():
         output_figure=str(fig3_path),
     )
 
-    # Các backend tham số và mel hiện là mô phỏng, chưa phải mô hình pretrained.
+    # Measured HMM and offline pretrained Piper backends.
     run_phase4(input_audio=str(best_audio_path), output_dir=args.audio_dir,
                output_figure=str(Path(args.figures_dir) / "04_prosody_analysis.png"))
     run_phase5(text=args.text, output_audio=str(Path(args.audio_dir) / "hmm_tts.wav"),

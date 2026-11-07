@@ -1,0 +1,10 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><title>Lab 4 — Nghe và chấm điểm</title>
+<style>body{max-width:760px;margin:40px auto;font:18px system-ui}section{padding:18px;border-bottom:1px solid #ddd}input{margin:8px;width:90%}button{padding:12px}</style>
+<h1>Đánh giá tiếng nói</h1><p>Nghe từng mẫu, chép chính xác những gì bạn nghe được, chấm độ tự nhiên và độ liền mạch từ 1 (thấp) đến 5 (cao).</p>
+<label>Mã người nghe <input id="listener" required></label><main id="samples"></main><button id="save">Tải CSV kết quả</button>
+<script>
+const ids=[];for(let s=1;s<=3;s++)for(const c of ['A','B','C'])ids.push(`S${s}_${c}`);
+for(const id of ids){const section=document.createElement('section');section.innerHTML=`<h2>${id}</h2><audio controls src="${id}.wav"></audio><p><label>Nội dung nghe được <input id="${id}_text"></label></p><label>Độ tự nhiên <input type="number" min="1" max="5" id="${id}_mos"></label><label>Độ liền mạch <input type="number" min="1" max="5" id="${id}_continuity"></label>`;samples.appendChild(section)}
+const quote=v=>'"'+String(v).replaceAll('"','""')+'"';
+save.onclick=()=>{if(!listener.value.trim()){alert('Nhập mã người nghe');return}const rows=[['listener_id','sample_id','transcription','naturalness_score','continuity_score']];for(const id of ids){const val=k=>document.getElementById(id+'_'+k).value; if(!val('text').trim()||![val('mos'),val('continuity')].every(x=>Number.isInteger(+x)&&+x>=1&&+x<=5)){alert('Điền đủ nội dung và điểm 1–5 cho '+id);return}rows.push([listener.value,id,val('text'),val('mos'),val('continuity')])}const url=URL.createObjectURL(new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(',')).join('\n')],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ratings.csv';a.click();URL.revokeObjectURL(url)};
+</script></html>

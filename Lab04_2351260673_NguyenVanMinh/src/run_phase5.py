@@ -90,7 +90,7 @@ def run_phase5(
         ["Số lượng frame tham số (10ms)", f"{len(tracks['f0'])} frames"],
         ["F0 trung bình (Voiced)", f"{np.mean(tracks['f0'][tracks['f0'] > 0]):.1f} Hz"],
         ["Độ giảm bước nhảy đột ngột F2", f"{f2_jump_reduction:.1f} %"],
-        ["Dung lượng lưu trữ mô hình", "~ 250 KB (Nhẹ hơn kho sóng mẫu)"],
+        ["Dung lượng lưu trữ mô hình", "data/models/hmm.json (đo dung lượng trong bảng đánh giá)"],
     ]
     print("\n--- BẢNG THỐNG KÊ HIỆU NĂNG HMM SYNTHESIS ---")
     print(tabulate(summary_data, headers=["Chỉ số", "Giá trị"], tablefmt="fancy_grid"))
