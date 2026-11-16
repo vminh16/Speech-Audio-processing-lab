@@ -1,0 +1,27 @@
+{
+  "matrices": {
+    "well": [
+      [
+        1.0,
+        0.6
+      ],
+      [
+        0.4,
+        1.0
+      ]
+    ],
+    "near": [
+      [
+        1.0,
+        0.98
+      ],
+      [
+        0.98,
+        1.0
+      ]
+    ]
+  },
+  "noise_snr_db": 20.0,
+  "random_state": 0,
+  "note": "Solo crops from different times of the 23s preview, overlaid artificially; not original overlap."
+}

@@ -1,0 +1,22 @@
+{
+  "features": {
+    "n_mfcc": 20,
+    "use_delta": true,
+    "cmn": false
+  },
+  "feature_name": "MFCC+Δ",
+  "enrollment_per_speaker": 4,
+  "threshold": 0.9991419762999671,
+  "selection": "dev accuracy, then mean true-vs-rival margin",
+  "dev_accuracy": 1.0,
+  "test_accuracy": 0.6666666666666666,
+  "test_count": 6,
+  "verification": {
+    "far": 0.16666666666666666,
+    "frr": 0.16666666666666666,
+    "false_accepts": 2,
+    "false_rejects": 1,
+    "genuine_trials": 6,
+    "impostor_trials": 12
+  }
+}

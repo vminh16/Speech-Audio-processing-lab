@@ -1,0 +1,6 @@
+<meeting xmlns:ns0="http://nite.sourceforge.net/" ns0:id="meet_187" type="nonscenario" observation="EN2009d" name="AMI hub non-scenario meeting" dateOnly="07-11-2005" topic="Software development: planning software support for annotation of eye-tracking and language data. Contains JC." duration="5324.416">
+      <speaker ns0:id="EN2009d_1" nxt_agent="A" global_name="FEE083" channel="0" camera="Closeup4" />
+      <speaker ns0:id="EN2009d_2" nxt_agent="C" global_name="MEE094" channel="2" camera="Closeup3" />
+      <speaker ns0:id="EN2009d_3" nxt_agent="D" global_name="MEE095" channel="3" camera="Closeup1" />
+      <speaker ns0:id="EN2009d_4" nxt_agent="B" global_name="FEE096" channel="1" camera="Closeup2" />
+   </meeting>

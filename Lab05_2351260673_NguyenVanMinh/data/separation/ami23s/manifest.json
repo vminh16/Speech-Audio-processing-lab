@@ -1,0 +1,68 @@
+[
+  {
+    "path": "Array1-01.wav",
+    "role": "microphone",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/EN2009d/audio/EN2009d.Array1-01.wav",
+    "meeting": "EN2009d",
+    "start": 4941.96,
+    "end": 4965.24,
+    "license": "CC-BY-4.0",
+    "sha256": "79b8cc904411a289652b84d31d3837f2c191dd0881c80baf142f4851460868e3"
+  },
+  {
+    "path": "Array1-05.wav",
+    "role": "microphone",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/EN2009d/audio/EN2009d.Array1-05.wav",
+    "meeting": "EN2009d",
+    "start": 4941.96,
+    "end": 4965.24,
+    "license": "CC-BY-4.0",
+    "sha256": "018d5870a9a8ecc808e52fab28a7cf9c162c61768463da88bbbe922df90f7a61"
+  },
+  {
+    "path": "Headset-0.wav",
+    "role": "approximate_reference",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/EN2009d/audio/EN2009d.Headset-0.wav",
+    "meeting": "EN2009d",
+    "start": 4941.96,
+    "end": 4965.24,
+    "license": "CC-BY-4.0",
+    "sha256": "692531bec627b648ae91a64836df03cbd6e5ee98f534229a70a1a2a4356d8975"
+  },
+  {
+    "path": "Headset-1.wav",
+    "role": "approximate_reference",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/EN2009d/audio/EN2009d.Headset-1.wav",
+    "meeting": "EN2009d",
+    "start": 4941.96,
+    "end": 4965.24,
+    "license": "CC-BY-4.0",
+    "sha256": "6140cfddda0dab1b72bc88d8699c2979ef2c4396ebbf9651e73215bbf7d6185b"
+  },
+  {
+    "path": "source_A.wav",
+    "role": "controlled_source",
+    "speaker": "spk01",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/HeadsetAudio/EN2009d.Mix-Headset.wav",
+    "meeting": "EN2009d",
+    "preview_start": 1.304,
+    "preview_end": 4.304,
+    "start": 4943.264,
+    "end": 4946.264,
+    "license": "CC-BY-4.0",
+    "sha256": "e3912348b4f660b273f25b5554d87f66f2ca707e3d61e4e43682e0ade38afa99"
+  },
+  {
+    "path": "source_B.wav",
+    "role": "controlled_source",
+    "speaker": "spk02",
+    "source_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/HeadsetAudio/EN2009d.Mix-Headset.wav",
+    "meeting": "EN2009d",
+    "preview_start": 17.768,
+    "preview_end": 20.768,
+    "start": 4959.728,
+    "end": 4962.728,
+    "license": "CC-BY-4.0",
+    "sha256": "bd1f6f3871e5170f96f3f01f76954631b6af42a734bb18c5d7da2563bd7e029f"
+  }
+]

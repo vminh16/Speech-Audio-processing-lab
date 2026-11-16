@@ -1,0 +1,28 @@
+{
+  "ss": {
+    "beta": 2.0,
+    "floor": 0.01
+  },
+  "stft": {
+    "n_fft": 512,
+    "win_length": 400,
+    "hop_length": 160
+  },
+  "features": {
+    "n_mfcc": 20,
+    "use_delta": true,
+    "cmn": false
+  },
+  "verification_threshold": 0.9991419762999671,
+  "shared_export_gain": 1.0,
+  "snrs": [
+    0,
+    5,
+    10
+  ],
+  "noise_names": [
+    "rain",
+    "vacuum_cleaner"
+  ],
+  "note": "All parameters frozen before integration. Whole-file enhancement before known-turn cropping. Original AMI contains room noise; SNR only measures explicitly added noise relative to original."
+}

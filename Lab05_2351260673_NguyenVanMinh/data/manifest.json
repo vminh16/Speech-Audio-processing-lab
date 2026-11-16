@@ -1,0 +1,156 @@
+[
+  {
+    "path": "clean/spk01_dev_01.wav",
+    "speaker": "jackson",
+    "split": "dev",
+    "source_files": [
+      "0_jackson_9.wav",
+      "1_jackson_9.wav",
+      "2_jackson_9.wav",
+      "3_jackson_9.wav",
+      "4_jackson_9.wav",
+      "5_jackson_9.wav",
+      "6_jackson_9.wav",
+      "7_jackson_9.wav",
+      "8_jackson_9.wav",
+      "9_jackson_9.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk01_dev_02.wav",
+    "speaker": "jackson",
+    "split": "dev",
+    "source_files": [
+      "0_jackson_10.wav",
+      "1_jackson_10.wav",
+      "2_jackson_10.wav",
+      "3_jackson_10.wav",
+      "4_jackson_10.wav",
+      "5_jackson_10.wav",
+      "6_jackson_10.wav",
+      "7_jackson_10.wav",
+      "8_jackson_10.wav",
+      "9_jackson_10.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk01_test_01.wav",
+    "speaker": "jackson",
+    "split": "test",
+    "source_files": [
+      "0_jackson_0.wav",
+      "1_jackson_0.wav",
+      "2_jackson_0.wav",
+      "3_jackson_0.wav",
+      "4_jackson_0.wav",
+      "5_jackson_0.wav",
+      "6_jackson_0.wav",
+      "7_jackson_0.wav",
+      "8_jackson_0.wav",
+      "9_jackson_0.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk02_dev_01.wav",
+    "speaker": "nicolas",
+    "split": "dev",
+    "source_files": [
+      "0_nicolas_9.wav",
+      "1_nicolas_9.wav",
+      "2_nicolas_9.wav",
+      "3_nicolas_9.wav",
+      "4_nicolas_9.wav",
+      "5_nicolas_9.wav",
+      "6_nicolas_9.wav",
+      "7_nicolas_9.wav",
+      "8_nicolas_9.wav",
+      "9_nicolas_9.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk02_dev_02.wav",
+    "speaker": "nicolas",
+    "split": "dev",
+    "source_files": [
+      "0_nicolas_10.wav",
+      "1_nicolas_10.wav",
+      "2_nicolas_10.wav",
+      "3_nicolas_10.wav",
+      "4_nicolas_10.wav",
+      "5_nicolas_10.wav",
+      "6_nicolas_10.wav",
+      "7_nicolas_10.wav",
+      "8_nicolas_10.wav",
+      "9_nicolas_10.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk03_dev_01.wav",
+    "speaker": "theo",
+    "split": "dev",
+    "source_files": [
+      "0_theo_9.wav",
+      "1_theo_9.wav",
+      "2_theo_9.wav",
+      "3_theo_9.wav",
+      "4_theo_9.wav",
+      "5_theo_9.wav",
+      "6_theo_9.wav",
+      "7_theo_9.wav",
+      "8_theo_9.wav",
+      "9_theo_9.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "clean/spk03_dev_02.wav",
+    "speaker": "theo",
+    "split": "dev",
+    "source_files": [
+      "0_theo_10.wav",
+      "1_theo_10.wav",
+      "2_theo_10.wav",
+      "3_theo_10.wav",
+      "4_theo_10.wav",
+      "5_theo_10.wav",
+      "6_theo_10.wav",
+      "7_theo_10.wav",
+      "8_theo_10.wav",
+      "9_theo_10.wav"
+    ],
+    "purpose": "enhancement"
+  },
+  {
+    "path": "noise/rain.wav",
+    "split": "noise",
+    "source": {
+      "filename": "1-17367-A-10.wav",
+      "fold": "1",
+      "target": "10",
+      "category": "rain",
+      "esc10": "True",
+      "src_file": "17367",
+      "take": "A"
+    },
+    "purpose": "enhancement"
+  },
+  {
+    "path": "noise/vacuum_cleaner.wav",
+    "split": "noise",
+    "source": {
+      "filename": "1-100210-A-36.wav",
+      "fold": "1",
+      "target": "36",
+      "category": "vacuum_cleaner",
+      "esc10": "False",
+      "src_file": "100210",
+      "take": "A"
+    },
+    "purpose": "enhancement"
+  }
+]

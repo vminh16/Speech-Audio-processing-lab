@@ -1,0 +1,12 @@
+{
+  "duration_s": 23.28,
+  "evaluated_turns": 5,
+  "correct_turns": 3,
+  "accuracy": 0.6,
+  "evaluated_seconds": 16.773999999998523,
+  "coverage": 0.7205326460480465,
+  "duration_weighted_accuracy": 0.7124716823655756,
+  "overlap_seconds": 4.698000000001485,
+  "min_duration": 1.0,
+  "mode": "manual boundaries, frozen enrollment models; supplementary demo only"
+}

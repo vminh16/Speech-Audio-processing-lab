@@ -1,0 +1,7 @@
+file,true,predicted,correct,margin
+spk01_dev_01.wav,spk01,spk01,True,0.00025098643774634777
+spk01_dev_02.wav,spk01,spk01,True,0.00022393465234915588
+spk02_dev_01.wav,spk02,spk02,True,0.0005090137451823074
+spk02_dev_02.wav,spk02,spk02,True,0.00047537721067714145
+spk03_dev_01.wav,spk03,spk03,True,0.0008321475965363812
+spk03_dev_02.wav,spk03,spk03,True,0.00025998142866512364

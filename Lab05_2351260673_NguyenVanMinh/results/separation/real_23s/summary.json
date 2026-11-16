@@ -1,0 +1,17 @@
+{
+  "converged": true,
+  "iterations": 30,
+  "input_correlation": 0.5600884751570077,
+  "input_condition": 1.9178967599004646,
+  "warnings": [],
+  "random_state": 0,
+  "duration_s": 23.28,
+  "reference_type": "real close-talk headset microphones; not clean ground truth",
+  "mean_abs_reference_correlation": 0.09520594990551878,
+  "minimum_abs_reference_correlation": 0.05496508374536234,
+  "rms_envelope_correlations": [
+    0.5878479101854276,
+    0.352985168579996
+  ],
+  "matching": "permutation/sign only, after blind ICA; no lag or gain fitted to references"
+}

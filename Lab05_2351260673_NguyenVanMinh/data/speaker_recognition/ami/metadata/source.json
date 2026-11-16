@@ -1,0 +1,10 @@
+{
+  "audio_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/HeadsetAudio/EN2009d.Mix-Headset.wav",
+  "annotations_url": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+  "annotations_sha256": "b56e5babb2496b8795deeeda7e71178d7fbc9963f94276cf2a3f4b56ebbc9f9d",
+  "license_url": "https://groups.inf.ed.ac.uk/ami/corpus/license.shtml",
+  "meeting_type": "nonscenario",
+  "selection": "8 distinct non-overlapping turns per speaker, 2\u20134s, no other annotated speaker \u00b1100ms",
+  "splits": "first 4 turns enrollment, next 2 dev, last 2 test; chronological, same session",
+  "processing": "PCM byte-range crops only; no synthesis, concatenation, denoising, or normalization"
+}

@@ -1,0 +1,39 @@
+{
+  "experiment": {
+    "clean": "spk01_test_01.wav",
+    "noises": [
+      "rain",
+      "vacuum_cleaner"
+    ],
+    "snrs": [
+      0,
+      5,
+      10
+    ],
+    "betas": [
+      1.0,
+      1.5,
+      2.0
+    ],
+    "floors": [
+      0.0,
+      0.01,
+      0.05
+    ],
+    "demo_snr": 5
+  },
+  "stft": {
+    "n_fft": 512,
+    "win_length": 400,
+    "hop_length": 160
+  },
+  "ss": {
+    "beta": 2.0,
+    "floor": 0.01
+  },
+  "wiener": {
+    "decision_directed": 0.9,
+    "amplitude_floor": 0.05
+  },
+  "selection": "maximum mean dev SNR; frozen before test"
+}
